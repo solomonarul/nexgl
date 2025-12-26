@@ -1,5 +1,7 @@
 #include "gl/rendertexture.hpp"
 
+#include "core/defines.hpp"
+
 #include <iostream>
 
 using namespace NEX::GL;
