@@ -1,6 +1,6 @@
 #pragma once
 
-#include "defines.hpp"
 #include "assets/all.hpp"
+#include "defines.hpp"
 #include "rendertexture.hpp"
 #include "window.hpp"
