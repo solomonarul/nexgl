@@ -24,7 +24,7 @@ namespace NEX::Core
         bool running = true;
     };
 
-    const auto RUN_MAIN_LOOP = [](bool loop_function(double time, void *userdata), IAppState *userdata)
+    const auto RUN_MAIN_LOOP = [](bool loop_function(double time, void* userdata), IAppState* userdata)
     {
 #ifdef __EMSCRIPTEN__
         emscripten_request_animation_frame_loop(loop_function, userdata);

@@ -9,14 +9,14 @@ using namespace NEX::GL;
 
 static GLchar shader_log[512];
 
-VertexShader::VertexShader(std::ifstream &file) : VertexShader(Core::read_file_contents(file))
+VertexShader::VertexShader(std::ifstream& file) : VertexShader(Core::read_file_contents(file))
 {
 }
 
 VertexShader::VertexShader(std::string code)
 {
     this->id = glCreateShader(GL_VERTEX_SHADER);
-    const char *code_str = code.c_str();
+    const char* code_str = code.c_str();
     glShaderSource(this->id, 1, &code_str, NULL);
     glCompileShader(this->id);
 
@@ -50,14 +50,14 @@ VertexShader::~VertexShader()
         std::cerr << TTY_YELLOW << "[WARN] Tried to destroy inexistent vertex shader.\n" << TTY_RESET;
 }
 
-FragmentShader::FragmentShader(std::ifstream &file) : FragmentShader(Core::read_file_contents(file))
+FragmentShader::FragmentShader(std::ifstream& file) : FragmentShader(Core::read_file_contents(file))
 {
 }
 
 FragmentShader::FragmentShader(std::string code)
 {
     this->id = glCreateShader(GL_FRAGMENT_SHADER);
-    const char *code_str = code.c_str();
+    const char* code_str = code.c_str();
     glShaderSource(this->id, 1, &code_str, NULL);
     glCompileShader(this->id);
 
@@ -91,7 +91,7 @@ FragmentShader::~FragmentShader()
         std::cerr << TTY_YELLOW << "[WARN] Tried to destroy inexistent fragment shader.\n" << TTY_RESET;
 }
 
-inline void init_from_shaders(Shader &self, const VertexShader &vert, const FragmentShader &frag)
+inline void init_from_shaders(Shader& self, const VertexShader& vert, const FragmentShader& frag)
 {
     self.id = glCreateProgram();
     if (vert.id != 0)
@@ -120,7 +120,7 @@ inline void init_from_shaders(Shader &self, const VertexShader &vert, const Frag
 #endif
 }
 
-Shader::Shader(const VertexShader &vert, const FragmentShader &frag)
+Shader::Shader(const VertexShader& vert, const FragmentShader& frag)
 {
     init_from_shaders(*this, vert, frag);
 }

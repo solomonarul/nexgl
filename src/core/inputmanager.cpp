@@ -4,13 +4,13 @@ using namespace NEX::Core;
 
 void InputManager::set_letterbox(SDL_Rect letterbox)
 {
-    auto &self = InputManager::self();
+    auto& self = InputManager::self();
     self.r_letterbox = letterbox;
 }
 
-void InputManager::handle_event(SDL_Event &event)
+void InputManager::handle_event(SDL_Event& event)
 {
-    auto &self = InputManager::self();
+    auto& self = InputManager::self();
     switch (event.type)
     {
         case SDL_EVENT_MOUSE_MOTION:
@@ -36,7 +36,7 @@ InputManager::MouseData InputManager::get_mouse_data()
     return InputManager::self().m_data;
 }
 
-InputManager &InputManager::self()
+InputManager& InputManager::self()
 {
     static InputManager self;
     return self;

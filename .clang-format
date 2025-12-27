@@ -1,0 +1,46 @@
+Language: Cpp
+BasedOnStyle: LLVM
+ColumnLimit: 150
+
+# Includes.
+SortIncludes: true
+IncludeBlocks: Preserve
+IncludeCategories:
+  - Regex: '^<.*>'
+    Priority: 1
+  - Regex: '^".*"'
+    Priority: 2
+
+# Shorties.
+AllowShortIfStatementsOnASingleLine: false
+AllowShortBlocksOnASingleLine: Always
+AllowShortLoopsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: None
+
+# Braces.
+BreakBeforeBraces: Allman
+BraceWrapping:
+  AfterFunction: false
+  AfterClass: false
+  AfterControlStatement: false
+
+# Arguments.
+BinPackArguments: true
+BinPackParameters: true
+BinPackLongBracedList: true
+Cpp11BracedListStyle: true
+AlignAfterOpenBracket: Align
+
+# Tabs.
+IndentWidth: 4
+ContinuationIndentWidth: 4
+IndentCaseLabels: true
+NamespaceIndentation: All
+
+# Macros.
+IndentPPDirectives: None
+MacroBlockBegin: ""
+MacroBlockEnd: ""
+
+# Others
+PointerAlignment: Left

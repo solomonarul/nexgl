@@ -14,13 +14,13 @@ namespace NEX::Core
         SDL_Rect r_letterbox = {0, 0, 0, 0};
 
         static void set_letterbox(SDL_Rect);
-        static void handle_event(SDL_Event &);
+        static void handle_event(SDL_Event&);
         static MouseData get_mouse_data();
 
       private:
         MouseData m_data;
 
         InputManager() = default;
-        static InputManager &self();
+        static InputManager& self();
     };
 }; // namespace NEX::Core

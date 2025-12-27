@@ -10,9 +10,9 @@
 
 using namespace NEX::Core;
 
-Audio::Audio(const std::string &path, bool predecode)
+Audio::Audio(const std::string& path, bool predecode)
 {
-    MIX_Mixer *mixer = AudioManager::get_mixer();
+    MIX_Mixer* mixer = AudioManager::get_mixer();
     this->audio = MIX_LoadAudio(mixer, path.c_str(), predecode);
     this->track = MIX_CreateTrack(mixer);
     MIX_SetTrackAudio(this->track, this->audio);
@@ -39,12 +39,12 @@ Audio::~Audio()
 #endif
 }
 
-MIX_Mixer *AudioManager::get_mixer()
+MIX_Mixer* AudioManager::get_mixer()
 {
     return get_instance().mixer;
 }
 
-AudioManager::AudioManagerInner &AudioManager::get_instance()
+AudioManager::AudioManagerInner& AudioManager::get_instance()
 {
     static AudioManagerInner instance;
     return instance;

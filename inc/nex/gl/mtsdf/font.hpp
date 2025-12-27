@@ -26,7 +26,7 @@ namespace NEX::GL::MTSDF
 
         static std::unique_ptr<GL::Shader> default_shader;
 
-        Font(const std::string &, const std::string &);
+        Font(const std::string&, const std::string&);
         ~Font();
     };
 } // namespace NEX::GL::MTSDF

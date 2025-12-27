@@ -22,9 +22,9 @@ namespace NEX::GL::MTSDF
         GLuint vbo = 0;
         std::vector<float> vertexData;
 
-        Text(std::shared_ptr<Font>, const std::string &);
+        Text(std::shared_ptr<Font>, const std::string&);
         ~Text();
 
-        void draw(std::unique_ptr<GL::Shader> & = GL::MTSDF::Font::default_shader);
+        void draw(std::unique_ptr<GL::Shader>& = GL::MTSDF::Font::default_shader);
     };
 } // namespace NEX::GL::MTSDF

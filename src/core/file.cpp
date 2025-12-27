@@ -3,7 +3,7 @@
 
 using namespace NEX::Core;
 
-std::string NEX::Core::read_file_contents(std::ifstream &file)
+std::string NEX::Core::read_file_contents(std::ifstream& file)
 {
     if (!file.good() || file.eof())
         return "";

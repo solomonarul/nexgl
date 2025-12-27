@@ -12,11 +12,11 @@
 using namespace NEX::Core;
 using namespace NEX::GL;
 
-bool AssetManager::remove(const std::string &key)
+bool AssetManager::remove(const std::string& key)
 {
     std::lock_guard<std::recursive_mutex> lock(mutex());
 
-    auto &assets = storage();
+    auto& assets = storage();
     auto it = assets.find(key);
     if (it == assets.end())
         return false;
@@ -27,7 +27,7 @@ bool AssetManager::remove(const std::string &key)
 
 void AssetManager::remove_all()
 {
-    auto &assets = storage();
+    auto& assets = storage();
     assets.clear();
 }
 
@@ -35,7 +35,7 @@ bool AssetManager::process_enqueued()
 {
     std::lock_guard<std::recursive_mutex> lock(mutex());
 
-    auto &q = get_queue();
+    auto& q = get_queue();
     if (q.empty())
         return false;
 
@@ -51,7 +51,7 @@ size_t AssetManager::enqueued_count()
     return get_queue().size();
 }
 
-static GLint parse_filter(const std::string &v)
+static GLint parse_filter(const std::string& v)
 {
     if (v == "nearest")
         return GL_NEAREST;
@@ -60,7 +60,7 @@ static GLint parse_filter(const std::string &v)
     return GL_NEAREST;
 }
 
-static GLint parse_wrap(const std::string &v)
+static GLint parse_wrap(const std::string& v)
 {
     if (v == "repeat")
         return GL_REPEAT;
@@ -69,7 +69,7 @@ static GLint parse_wrap(const std::string &v)
     return GL_CLAMP_TO_EDGE;
 }
 
-static GLint parse_format(const std::string &v)
+static GLint parse_format(const std::string& v)
 {
     if (v == "rgb")
         return GL_RGB;
@@ -78,7 +78,7 @@ static GLint parse_format(const std::string &v)
     return GL_RGB;
 }
 
-size_t AssetManager::queue_from_toml(const std::string &path)
+size_t AssetManager::queue_from_toml(const std::string& path)
 {
     const toml::parse_result result = toml::parse_file(path);
     if (!result)
@@ -88,12 +88,12 @@ size_t AssetManager::queue_from_toml(const std::string &path)
     }
 
     size_t count = 0;
-    const toml::table &tbl = result.table();
+    const toml::table& tbl = result.table();
 
-    if (auto *shader_array = tbl["shader"].as_array())
-        for (const toml::node &node : *shader_array)
+    if (auto* shader_array = tbl["shader"].as_array())
+        for (const toml::node& node : *shader_array)
         {
-            const auto *t = node.as_table();
+            const auto* t = node.as_table();
             if (!t)
                 continue;
 
@@ -108,10 +108,10 @@ size_t AssetManager::queue_from_toml(const std::string &path)
             count++;
         }
 
-    if (auto *font_array = tbl["font_mtsdf"].as_array())
-        for (const toml::node &node : *font_array)
+    if (auto* font_array = tbl["font_mtsdf"].as_array())
+        for (const toml::node& node : *font_array)
         {
-            const auto *t = node.as_table();
+            const auto* t = node.as_table();
             if (!t)
                 continue;
 
@@ -126,10 +126,10 @@ size_t AssetManager::queue_from_toml(const std::string &path)
             count++;
         }
 
-    if (auto *audio_array = tbl["audio"].as_array())
-        for (const toml::node &node : *audio_array)
+    if (auto* audio_array = tbl["audio"].as_array())
+        for (const toml::node& node : *audio_array)
         {
-            const auto *t = node.as_table();
+            const auto* t = node.as_table();
             if (!t)
                 continue;
 
@@ -144,10 +144,10 @@ size_t AssetManager::queue_from_toml(const std::string &path)
             count++;
         }
 
-    if (auto *tex_array = tbl["texture"].as_array())
-        for (const toml::node &node : *tex_array)
+    if (auto* tex_array = tbl["texture"].as_array())
+        for (const toml::node& node : *tex_array)
         {
-            const auto *t = node.as_table();
+            const auto* t = node.as_table();
             if (!t)
                 continue;
 
@@ -182,15 +182,15 @@ size_t AssetManager::queue_from_toml(const std::string &path)
             count++;
         }
 
-    if (auto *tex_arrays = tbl["texture_array"].as_array())
-        for (const toml::node &node : *tex_arrays)
+    if (auto* tex_arrays = tbl["texture_array"].as_array())
+        for (const toml::node& node : *tex_arrays)
         {
-            const auto *t = node.as_table();
+            const auto* t = node.as_table();
             if (!t)
                 continue;
 
             const auto id = t->get_as<std::string>("id");
-            const auto *textures = t->get_as<toml::array>("textures");
+            const auto* textures = t->get_as<toml::array>("textures");
 
             if (!id || !textures || textures->empty())
                 continue;
@@ -198,9 +198,9 @@ size_t AssetManager::queue_from_toml(const std::string &path)
             std::vector<TextureConfig> configs;
             configs.reserve(textures->size());
 
-            for (const toml::node &tex_node : *textures)
+            for (const toml::node& tex_node : *textures)
             {
-                const auto *tex = tex_node.as_table();
+                const auto* tex = tex_node.as_table();
                 if (!tex)
                     continue;
 
@@ -242,19 +242,19 @@ size_t AssetManager::queue_from_toml(const std::string &path)
     return count;
 }
 
-AssetManager::Storage &AssetManager::storage()
+AssetManager::Storage& AssetManager::storage()
 {
     static Storage s;
     return s;
 }
 
-std::recursive_mutex &AssetManager::mutex()
+std::recursive_mutex& AssetManager::mutex()
 {
     static std::recursive_mutex m;
     return m;
 }
 
-std::vector<AssetManager::AssetLoad> &AssetManager::get_queue()
+std::vector<AssetManager::AssetLoad>& AssetManager::get_queue()
 {
     static std::vector<AssetLoad> q;
     return q;

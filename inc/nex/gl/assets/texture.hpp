@@ -23,7 +23,7 @@ namespace NEX::GL
     {
         GLuint id;
         int w, h;
-        void *data;
+        void* data;
 
         static std::unique_ptr<GL::Shader> default_shader;
 

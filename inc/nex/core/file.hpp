@@ -5,5 +5,5 @@
 
 namespace NEX::Core
 {
-    std::string read_file_contents(std::ifstream &);
+    std::string read_file_contents(std::ifstream&);
 }

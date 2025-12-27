@@ -13,7 +13,7 @@ namespace NEX::GL
 
     struct Window
     {
-        SDL_Window *sdl = nullptr;
+        SDL_Window* sdl = nullptr;
         SDL_GLContext gl = nullptr;
         int w, h;
 

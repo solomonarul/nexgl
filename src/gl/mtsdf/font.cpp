@@ -13,7 +13,7 @@ using namespace NEX::GL;
 
 std::unique_ptr<Shader> MTSDF::Font::default_shader;
 
-MTSDF::Font::Font(const std::string &path, const std::string &csv_path)
+MTSDF::Font::Font(const std::string& path, const std::string& csv_path)
 {
     if (!default_shader)
         default_shader = std::make_unique<Shader>("assets/shaders/mtsdf_default.vert", "assets/shaders/mtsdf_default.frag");

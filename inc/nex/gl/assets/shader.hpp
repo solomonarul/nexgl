@@ -11,7 +11,7 @@ namespace NEX::GL
     {
         GLuint id = 0;
 
-        VertexShader(std::ifstream &);
+        VertexShader(std::ifstream&);
         VertexShader(std::string);
         ~VertexShader();
     };
@@ -20,7 +20,7 @@ namespace NEX::GL
     {
         GLuint id = 0;
 
-        FragmentShader(std::ifstream &);
+        FragmentShader(std::ifstream&);
         FragmentShader(std::string);
         ~FragmentShader();
     };
@@ -31,7 +31,7 @@ namespace NEX::GL
 
         void use();
         Shader(std::string, std::string);
-        Shader(const VertexShader &, const FragmentShader &);
+        Shader(const VertexShader&, const FragmentShader&);
 
         void setUniform(std::string const name, int value);
         void setUniform(std::string const name, float value);
