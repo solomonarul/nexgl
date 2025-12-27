@@ -18,6 +18,7 @@ add_library(
         "src/core/timer.cpp"
         "src/core/assetmanager.cpp"
         "src/core/inputmanager.cpp"
+        "src/gl/defines.cpp"
         "src/gl/window.cpp"
         "src/gl/mtsdf/font.cpp"
         "src/gl/mtsdf/text.cpp"
