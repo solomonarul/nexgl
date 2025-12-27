@@ -4,9 +4,7 @@
 
 using namespace NEX::Core;
 
-Timer::Timer(double rate) : rate(rate)
-{
-}
+Timer::Timer(double rate) : rate(rate) {}
 
 void Timer::update(double dt)
 {

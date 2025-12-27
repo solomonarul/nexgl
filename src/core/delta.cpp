@@ -4,9 +4,7 @@
 
 using namespace NEX::Core;
 
-DeltaTimer::DeltaTimer() : last(SDL_GetPerformanceCounter())
-{
-}
+DeltaTimer::DeltaTimer() : last(SDL_GetPerformanceCounter()) {}
 
 double DeltaTimer::tick()
 {

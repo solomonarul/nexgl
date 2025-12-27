@@ -9,9 +9,7 @@ using namespace NEX::GL;
 
 static GLchar shader_log[512];
 
-VertexShader::VertexShader(std::ifstream& file) : VertexShader(Core::read_file_contents(file))
-{
-}
+VertexShader::VertexShader(std::ifstream& file) : VertexShader(Core::read_file_contents(file)) {}
 
 VertexShader::VertexShader(std::string code)
 {
@@ -50,9 +48,7 @@ VertexShader::~VertexShader()
         std::cerr << TTY_YELLOW << "[WARN] Tried to destroy inexistent vertex shader.\n" << TTY_RESET;
 }
 
-FragmentShader::FragmentShader(std::ifstream& file) : FragmentShader(Core::read_file_contents(file))
-{
-}
+FragmentShader::FragmentShader(std::ifstream& file) : FragmentShader(Core::read_file_contents(file)) {}
 
 FragmentShader::FragmentShader(std::string code)
 {

@@ -11,9 +11,7 @@ namespace NEX::Core
 
     struct IState
     {
-        IState(StateManager& sm) : state_manager(sm)
-        {
-        }
+        IState(StateManager& sm) : state_manager(sm) {}
 
         StateManager& state_manager;
         virtual ~IState() = default;

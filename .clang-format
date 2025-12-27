@@ -15,7 +15,7 @@ IncludeCategories:
 AllowShortIfStatementsOnASingleLine: false
 AllowShortBlocksOnASingleLine: Always
 AllowShortLoopsOnASingleLine: true
-AllowShortFunctionsOnASingleLine: None
+AllowShortFunctionsOnASingleLine: Empty
 
 # Braces.
 BreakBeforeBraces: Allman
