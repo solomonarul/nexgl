@@ -1,4 +1,5 @@
 #include "gl/mtsdf/text.hpp"
+#include <SDL3/SDL_rect.h>
 
 using namespace NEX::GL;
 
@@ -48,21 +49,25 @@ inline void gen_and_upload_vertices(MTSDF::Text& self)
         quad.w *= self.s * self.s_x;
         quad.h *= self.s * self.s_y;
 
-        if (!std::isspace(c)) // DO not send whitespaces. They must update the cursor but do not
-                              // generate triangles for them.
+        // DO not send whitespaces. They must update the cursor but do not generate triangles for them.
+        if (!std::isspace(c))
+        {
+            const float X1 = pen_x + quad.x;
+            const float Y1 = pen_y + quad.y;
+            const float X2 = pen_x + quad.w;
+            const float Y2 = pen_y + quad.h;
+
+            // clang-format off
             self.vertexData.insert(self.vertexData.end(), {
-                                                              pen_x + quad.x, pen_y + quad.y, u0, v1,
-
-                                                              pen_x + quad.w, pen_y + quad.y, u1, v1,
-
-                                                              pen_x + quad.w, pen_y + quad.h, u1, v0,
-
-                                                              pen_x + quad.x, pen_y + quad.y, u0, v1,
-
-                                                              pen_x + quad.w, pen_y + quad.h, u1, v0,
-
-                                                              pen_x + quad.x, pen_y + quad.h, u0, v0,
-                                                          });
+                X1, Y1, u0, v1,  X2, Y1, u1, v1,  X2, Y2, u1, v0,
+                X1, Y1, u0, v1,  X2, Y2, u1, v0,  X1, Y2, u0, v0,
+            });
+            self.box.x = (self.box.x < X1) ? self.box.x : X1;
+            self.box.y = (self.box.y < Y1) ? self.box.y : Y1;
+            self.box.w = (self.box.w > X2) ? self.box.x : X2;
+            self.box.h = (self.box.h > Y2) ? self.box.y : Y2;
+            // clang-format on
+        }
 
         pen_x += self.s * it->second.advance * self.s_x;
     }
@@ -80,6 +85,11 @@ MTSDF::Text::~Text()
 {
     if (this->vbo)
         glDeleteBuffers(1, &this->vbo), this->vbo = 0;
+}
+
+SDL_FRect MTSDF::Text::get_bounding_box(void)
+{
+    return SDL_FRect{.x = this->box.x, .y = this->box.y, .w = this->box.w - this->box.x, .h = this->box.h - this->box.y};
 }
 
 void MTSDF::Text::draw(std::unique_ptr<Shader>& shader)
