@@ -1,5 +1,4 @@
 #include "gl/mtsdf/text.hpp"
-#include <SDL3/SDL_rect.h>
 
 using namespace NEX::GL;
 
