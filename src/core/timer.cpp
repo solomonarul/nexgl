@@ -6,6 +6,11 @@ using namespace NEX::Core;
 
 Timer::Timer(double rate) : rate(rate) {}
 
+float Timer::progress(void)
+{
+    return this->value / this->rate;
+}
+
 void Timer::update(double dt)
 {
     this->value += dt;
