@@ -10,7 +10,7 @@ Sprite::Sprite(VertexData data[4])
 
 Sprite::~Sprite()
 {
-    if(this->vbo)
+    if (this->vbo)
         glDeleteBuffers(1, &this->vbo);
 }
 

@@ -15,6 +15,8 @@ namespace NEX::Core
 
         static void set_letterbox(SDL_Rect);
         static void handle_event(SDL_Event&);
+
+        // If there is a letterbox set, this uses normalized coords, otherwise it's normal pixels.
         static MouseData get_mouse_data();
 
       private:

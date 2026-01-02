@@ -19,8 +19,9 @@ void InputManager::handle_event(SDL_Event& event)
                 if (event.pmotion.x < self.r_letterbox.x || event.pmotion.x > self.r_letterbox.x + self.r_letterbox.w ||
                     event.pmotion.y < self.r_letterbox.y || event.pmotion.y > self.r_letterbox.y + self.r_letterbox.h)
                     break;
-                self.m_data.x = event.pmotion.x - self.r_letterbox.x;
-                self.m_data.y = event.pmotion.y - self.r_letterbox.y;
+
+                self.m_data.x = (event.pmotion.x - self.r_letterbox.x) * 1.0 / self.r_letterbox.w;
+                self.m_data.y = (event.pmotion.y - self.r_letterbox.y) * 1.0 / self.r_letterbox.h;
             }
             else
             {
