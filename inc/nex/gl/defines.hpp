@@ -14,4 +14,4 @@ namespace NEX::GL
 
     void set_view(SDL_Rect);
     void set_view_letterbox(SDL_Point, SDL_Point);
-}
+} // namespace NEX::GL
