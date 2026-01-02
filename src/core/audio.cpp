@@ -59,6 +59,11 @@ bool Audio::is_playing_track(void)
     return MIX_TrackPlaying(this->track);
 }
 
+void Audio::stop_track(Sint64 fade_out_frames)
+{
+    MIX_StopTrack(this->track, fade_out_frames);
+}
+
 MIX_Mixer* AudioManager::get_mixer()
 {
     return get_instance().mixer;

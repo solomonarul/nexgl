@@ -20,6 +20,7 @@ namespace NEX::Core
         void play_track(SDL_PropertiesID = 0);
         void set_gain_track(double);
         bool is_playing_track(void);
+        void stop_track(Sint64 = 0);
     };
 
     struct AudioManager
