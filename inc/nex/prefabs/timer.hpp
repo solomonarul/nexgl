@@ -1,6 +1,6 @@
 #pragma once
 
-namespace NEX::Core
+namespace NEX::Prefabs
 {
     struct Timer
     {
@@ -12,4 +12,4 @@ namespace NEX::Core
         void update(double);
         bool has_ticked(void);
     };
-}; // namespace NEX::Core
+}; // namespace NEX::Prefabs

@@ -1,8 +1,8 @@
-#include "core/timer.hpp"
+#include "prefabs/timer.hpp"
 
 #include <cmath>
 
-using namespace NEX::Core;
+using namespace NEX::Prefabs;
 
 Timer::Timer(double rate) : rate(rate) {}
 
