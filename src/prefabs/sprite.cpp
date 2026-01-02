@@ -30,8 +30,24 @@ void Sprite::draw(GL::Shader& shader, GLenum mode)
     glDrawArrays(mode, 0, 4);
 }
 
+void Sprite::refresh_from_rect(SDL_FRect rect)
+{
+    this->data[0].x = rect.x;
+    this->data[0].y = rect.y;
+
+    this->data[1].x = rect.x + rect.w;
+    this->data[1].y = rect.y;
+
+    this->data[2].x = rect.x;
+    this->data[2].y = rect.y + rect.h;
+
+    this->data[3].x = rect.x + rect.w;
+    this->data[3].y = rect.y + rect.h;
+    refresh();
+}
+
 void Sprite::refresh(void)
 {
     glBindBuffer(GL_ARRAY_BUFFER, this->vbo);
-    glBufferSubData(this->vbo, 0, 4 * sizeof(VertexData), &this->data);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, 4 * sizeof(VertexData), this->data);
 }
