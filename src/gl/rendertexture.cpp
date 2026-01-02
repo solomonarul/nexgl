@@ -52,10 +52,9 @@ void RenderTexture::use(void)
     glViewport(0, 0, this->w, this->h);
 }
 
-void RenderTexture::unuse(int original_x, int original_y, int original_w, int original_h)
+void RenderTexture::unuse(void)
 {
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glViewport(original_x, original_y, original_w, original_h);
 }
 
 void RenderTexture::activate(GLenum slot)

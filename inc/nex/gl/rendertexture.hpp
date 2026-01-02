@@ -13,7 +13,7 @@ namespace NEX::GL
         ~RenderTexture();
 
         void use(void);
-        void unuse(int, int, int, int);
+        void unuse(void);
         void activate(GLenum);
         void bind(void);
     };
