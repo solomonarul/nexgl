@@ -9,6 +9,9 @@ namespace NEX::Core
         struct MouseData
         {
             float x, y;
+
+            SDL_FPoint get_coords(void);
+            SDL_FPoint get_coords_normalized(void);
         };
 
         SDL_Rect r_letterbox = {0, 0, 0, 0};

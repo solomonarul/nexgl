@@ -2,6 +2,16 @@
 
 using namespace NEX::Core;
 
+SDL_FPoint InputManager::MouseData::get_coords(void)
+{
+    return SDL_FPoint{this->x, this->y};
+}
+
+SDL_FPoint InputManager::MouseData::get_coords_normalized(void)
+{
+    return SDL_FPoint{(this->x - 0.5f) * 2, -(this->y - 0.5f) * 2};
+}
+
 void InputManager::set_letterbox(SDL_Rect letterbox)
 {
     auto& self = InputManager::self();
