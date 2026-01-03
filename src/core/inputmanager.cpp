@@ -1,5 +1,7 @@
 #include "core/inputmanager.hpp"
 
+#include "core/cursor.hpp"
+
 using namespace NEX::Core;
 
 SDL_FPoint InputManager::MouseData::get_coords(void)
@@ -21,6 +23,7 @@ void InputManager::set_letterbox(SDL_Rect letterbox)
 void InputManager::handle_event(SDL_Event& event)
 {
     auto& self = InputManager::self();
+
     switch (event.type)
     {
         case SDL_EVENT_MOUSE_MOTION:

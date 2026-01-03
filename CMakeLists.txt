@@ -15,6 +15,7 @@ add_library(
         "src/core/file.cpp"
         "src/core/state.cpp"
         "src/core/delta.cpp"
+        "src/core/cursor.cpp"
         "src/core/assetmanager.cpp"
         "src/core/inputmanager.cpp"
         "src/gl/defines.cpp"

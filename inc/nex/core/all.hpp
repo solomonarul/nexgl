@@ -8,3 +8,4 @@
 #include "inputmanager.hpp"
 #include "random.hpp"
 #include "state.hpp"
+#include "cursor.hpp"
