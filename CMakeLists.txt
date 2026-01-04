@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
+option(NEX_ASSET_LOADER_TOML OFF)
 
 message(STATUS "NEX_BUILD_PLATFORM = ${NEX_BUILD_PLATFORM}")
 
@@ -31,14 +32,16 @@ add_library(
 )
 add_subdirectory(lib)
 
-target_compile_definitions(
-	${PROJECT_NAME}
-	PRIVATE
-		TOML_EXCEPTIONS=0
-		TOML_HEADER_ONLY=0
-	 	TOML_ENABLE_FORMATTERS=0
-		TOML_ENABLE_UNRELEASED_FEATURES=0
-)
+if(NEX_ASSET_LOADER_TOML)
+    target_compile_definitions(
+        ${PROJECT_NAME}
+        PRIVATE
+            TOML_EXCEPTIONS=0
+            TOML_HEADER_ONLY=0
+            TOML_ENABLE_FORMATTERS=0
+            TOML_ENABLE_UNRELEASED_FEATURES=0
+    )
+endif()
 
 target_include_directories(
     ${PROJECT_NAME}

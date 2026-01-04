@@ -4,10 +4,12 @@
 #include "gl/all.hpp"
 #include "gl/mtsdf/font.hpp"
 
+#ifdef NEX_ASSET_LOADER_TOML
 #define TOML_IMPLEMENTATION
 #include <toml++/toml.hpp>
 
 #include <iostream>
+#endif
 
 using namespace NEX::Core;
 using namespace NEX::GL;
@@ -51,6 +53,7 @@ size_t AssetManager::enqueued_count()
     return get_queue().size();
 }
 
+#ifdef NEX_ASSET_LOADER_TOML
 static GLint parse_filter(const std::string& v)
 {
     if (v == "nearest")
@@ -241,6 +244,7 @@ size_t AssetManager::queue_from_toml(const std::string& path)
 
     return count;
 }
+#endif
 
 AssetManager::Storage& AssetManager::storage()
 {

@@ -85,7 +85,9 @@ namespace NEX::Core
             get_queue().push_back({key, [=]() { return std::make_shared<T>(args...); }});
         }
 
+#ifdef NEX_ASSET_LOADER_TOML
         static size_t queue_from_toml(const std::string& path);
+#endif
 
         static bool remove(const std::string& key);
         static void remove_all();
