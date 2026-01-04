@@ -1,6 +1,10 @@
 message(STATUS "Linking with PSVita libraries.")
 
-add_compile_definitions(__psp2__)
+target_compile_definitions(
+    ${PROJECT_NAME}
+    PUBLIC
+        __psp2__   
+)
 
 target_link_libraries(
     ${PROJECT_NAME}
@@ -21,5 +25,11 @@ target_link_libraries(
         SceTouch_stub
         SceAppUtil_stub
         SceIme_stub
-        m
+        m xmp mpg123
+        opusfile
+        opus
+        vorbisfile
+        vorbis
+        ogg
+        FLAC
 )

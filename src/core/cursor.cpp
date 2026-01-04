@@ -4,7 +4,8 @@
 
 using namespace NEX::Core;
 
-static struct CursorManagerInstance {
+static struct CursorManagerInstance
+{
     Cursor default_cursor = CURSOR_NORMAL;
     Cursor current;
 
@@ -22,8 +23,7 @@ CursorManagerInstance::CursorManagerInstance()
 
 CursorManagerInstance::~CursorManagerInstance()
 {
-    for(auto index = 0; index < CURSOR_COUNT; index++)
-        SDL_DestroyCursor(this->cursors[index]);
+    for (auto index = 0; index < CURSOR_COUNT; index++) SDL_DestroyCursor(this->cursors[index]);
 }
 
 void CursorManager::set_default_cursor(Cursor cursor)
@@ -33,7 +33,8 @@ void CursorManager::set_default_cursor(Cursor cursor)
 
 void CursorManager::set_cursor(Cursor cursor)
 {
-    if(cursor == self.default_cursor) return;
+    if (cursor == self.default_cursor)
+        return;
     self.current = cursor;
 }
 
