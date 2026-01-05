@@ -31,3 +31,4 @@ namespace NEX::Core
 }; // namespace NEX::Core
 
 #define PUSH_STATE(sm, state, ...) sm.states.push_back(std::make_shared<state>(sm, ##__VA_ARGS__))
+#define GET_TOP_STATE_AS(sm, type) std::dynamic_pointer_cast<type>((sm).states.empty() ? nullptr : (sm).states.back())

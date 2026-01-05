@@ -29,48 +29,9 @@ void NEX::GL::set_view_letterbox(SDL_Point size, SDL_Point original)
 }
 
 #ifdef __psp2__
-#include <stddef.h>
-
-/* Thread-safe strtok replacement for Vita */
+#include <string.h>
 char* SDL_strtok_r(char* str, const char* delim, char** saveptr)
 {
-    char* start;
-    char* end;
-
-    if (str != NULL)
-    {
-        start = str;
-    }
-    else
-    {
-        start = *saveptr;
-    }
-
-    if (start == NULL)
-    {
-        return NULL;
-    }
-
-    /* Skip leading delimiters */
-    start += strspn(start, delim);
-    if (*start == '\0')
-    {
-        *saveptr = NULL;
-        return NULL;
-    }
-
-    /* Find the end of the token */
-    end = start + strcspn(start, delim);
-    if (*end != '\0')
-    {
-        *end = '\0';
-        *saveptr = end + 1;
-    }
-    else
-    {
-        *saveptr = NULL;
-    }
-
-    return start;
+    return strtok_r(str, delim, saveptr);
 }
 #endif

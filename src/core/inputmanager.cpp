@@ -1,7 +1,5 @@
 #include "core/inputmanager.hpp"
 
-#include "core/cursor.hpp"
-
 using namespace NEX::Core;
 
 SDL_FPoint InputManager::MouseData::get_coords(void)

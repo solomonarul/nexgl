@@ -14,20 +14,20 @@ Sprite::~Sprite()
         glDeleteBuffers(1, &this->vbo);
 }
 
-void Sprite::draw(GL::Shader& shader, GLenum mode)
+void Sprite::draw(GL::Shader& shader)
 {
     glBindBuffer(GL_ARRAY_BUFFER, this->vbo);
     glUniform4f(glGetUniformLocation(shader.id, "u_color"), this->color.r, this->color.g, this->color.b, this->color.a);
 
     GLint a_position = glGetAttribLocation(shader.id, "a_position");
     glEnableVertexAttribArray(a_position);
-    glVertexAttribPointer(a_position, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+    glVertexAttribPointer(a_position, 2, GL_FLOAT, GL_FALSE, sizeof(VertexData), (void*)0);
 
     GLint a_texcoord = glGetAttribLocation(shader.id, "a_texture_coords");
     glEnableVertexAttribArray(a_texcoord);
-    glVertexAttribPointer(a_texcoord, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+    glVertexAttribPointer(a_texcoord, 2, GL_FLOAT, GL_FALSE, sizeof(VertexData), (void*)(2 * sizeof(float)));
 
-    glDrawArrays(mode, 0, 4);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
 void Sprite::refresh_from_rect(SDL_FRect rect)

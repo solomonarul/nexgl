@@ -16,7 +16,6 @@ add_library(
         "src/core/file.cpp"
         "src/core/state.cpp"
         "src/core/delta.cpp"
-        "src/core/cursor.cpp"
         "src/core/assetmanager.cpp"
         "src/core/inputmanager.cpp"
         "src/gl/defines.cpp"
@@ -29,6 +28,7 @@ add_library(
         "src/gl/rendertexture.cpp"
         "src/prefabs/timer.cpp"
         "src/prefabs/sprite.cpp"
+        "src/prefabs/spriteatlas.cpp"
 )
 add_subdirectory(lib)
 
