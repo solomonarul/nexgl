@@ -1,9 +1,18 @@
 message(STATUS "Linking with system libraries.")
-target_link_libraries(
-    ${PROJECT_NAME}
-    PRIVATE
-        GL
-)
+
+if(NEX_BUILD_PLATFORM MATCHES "WINDOWS")
+    target_link_libraries(
+        ${PROJECT_NAME}
+        PUBLIC
+            glad_gles2
+    )
+else()
+    target_link_libraries(
+        ${PROJECT_NAME}
+        PUBLIC
+            GL
+    )
+endif()
 
 if(EMSCRIPTEN)
     install(

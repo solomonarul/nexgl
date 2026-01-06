@@ -15,7 +15,7 @@ if(SDL3_VENDORED)
     FetchContent_Declare(
         SDL3
         GIT_REPOSITORY https://github.com/libsdl-org/SDL.git
-        GIT_TAG main
+        GIT_TAG release-3.4.x
     )
     FetchContent_MakeAvailable(SDL3)
 
@@ -27,11 +27,20 @@ if(SDL3_VENDORED)
 else()
     message(STATUS "SDL3: Using local version in ${PROJECT_NAME}.")
     find_package(SDL3 REQUIRED)
-    target_link_libraries(
-        ${PROJECT_NAME}
-        PUBLIC
-            SDL3
-    )
+
+    if(NEX_BUILD_PLATFORM MATCHES "WINDOWS")
+        target_link_libraries(
+            ${PROJECT_NAME}
+            PUBLIC
+                SDL3::SDL3
+        )
+    else()
+        target_link_libraries(
+            ${PROJECT_NAME}
+            PUBLIC
+                SDL3
+        )
+    endif()
 endif()
 
 if(SDL3_MIXER_VENDORED)

@@ -12,6 +12,7 @@ endif()
 project(nex)
 add_library(
     ${PROJECT_NAME}
+    STATIC
         "src/core/audio.cpp"
         "src/core/file.cpp"
         "src/core/state.cpp"

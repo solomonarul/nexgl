@@ -1,7 +1,12 @@
 #pragma once
 
 #include <SDL3/SDL.h>
+
+#ifdef _WIN32
+#include <glad/glad.h>
+#else
 #include <SDL3/SDL_opengles2.h>
+#endif
 
 #define GEN_AND_SEND_VBO(vbo, verts, usage)                                                                                                          \
     glGenBuffers(1, &vbo);                                                                                                                           \

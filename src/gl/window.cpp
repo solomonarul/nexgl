@@ -50,11 +50,19 @@ Window::Window(WindowConfig cfg)
         SDL_DestroyWindow(this->sdl), this->sdl = nullptr;
         if (window_count == 0)
             free_sdl_video();
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Could not initialize SDL3 GLES 2.0 context!", SDL_GetError(), NULL);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Could not initialize GLES 2.0 context!", SDL_GetError(), NULL);
         exit(-1);
     }
 
     SDL_GL_MakeCurrent(this->sdl, this->gl);
+
+#ifdef _WIN32
+    if (!gladLoadGLES2Loader((GLADloadproc)SDL_GL_GetProcAddress))
+    {
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Could not initialize GLES 2.0!", SDL_GetError(), NULL);
+        exit(-1);
+    }
+#endif
 
     glEnable(GL_BLEND);
     glDisable(GL_DEPTH_TEST);
@@ -65,8 +73,14 @@ Window::Window(WindowConfig cfg)
 
     window_count++;
 
-    std::cout << TTY_BLUE << "[INFO] Created SDL GLES 2.0 window (title: " << cfg.title << ") (w: " << cfg.w << ") (h: " << cfg.h << ")\n"
+    std::cout << TTY_BLUE << "[INFO] Created SDL window (title: " << cfg.title << ") (w: " << cfg.w << ") (h: " << cfg.h << ")\n"
               << TTY_RESET;
+
+    std::cout << TTY_BLUE << "[INFO] GLES 2.0 context data:\n" << TTY_RESET;
+    SDL_Log("Vendor   : %s", glGetString(GL_VENDOR));
+    SDL_Log("Renderer : %s", glGetString(GL_RENDERER));
+    SDL_Log("Version  : %s", glGetString(GL_VERSION));
+    SDL_Log("GLSL     : %s", glGetString(GL_SHADING_LANGUAGE_VERSION));
 }
 
 void Window::use()
