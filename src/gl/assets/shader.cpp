@@ -104,14 +104,14 @@ Shader::Shader(std::string vertex_path, std::string fragment_path)
     std::ifstream vfile(vertex_path);
     if (!vfile.is_open())
     {
-        SDL_Log("%s[WARN] Could not open vertex shader (path: %s), aborting compilation...%s\n", TTY_YELLOW, vertex_path, TTY_RESET);
+        SDL_Log("%s[WARN] Could not open vertex shader (path: %s), aborting compilation...%s\n", TTY_YELLOW, vertex_path.c_str(), TTY_RESET);
         return;
     }
 
     std::ifstream ffile(fragment_path);
     if (!ffile.is_open())
     {
-        SDL_Log("%s[WARN] Could not open fragment shader (path: %s), aborting compilation...%s\n", TTY_YELLOW, fragment_path, TTY_RESET);
+        SDL_Log("%s[WARN] Could not open fragment shader (path: %s), aborting compilation...%s\n", TTY_YELLOW, fragment_path.c_str(), TTY_RESET);
         return;
     }
 

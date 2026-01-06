@@ -72,7 +72,7 @@ Window::Window(WindowConfig cfg)
 
     window_count++;
 
-    SDL_Log("%s[INFO] Created SDL window (title: %s) (w: %d) (h: %d)", TTY_BLUE, cfg.title.c_str(), cfg.w, cfg.h);
+    SDL_Log("%s[INFO] Created SDL window (title: %s) (w: %ld) (h: %ld)", TTY_BLUE, cfg.title.c_str(), cfg.w, cfg.h);
     SDL_Log("[INFO] GLES 2.0 context data:%s\n", TTY_RESET);
     SDL_Log("Vendor   : %s", glGetString(GL_VENDOR));
     SDL_Log("Renderer : %s", glGetString(GL_RENDERER));
