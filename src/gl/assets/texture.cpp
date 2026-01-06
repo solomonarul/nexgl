@@ -29,9 +29,13 @@ Texture::Texture(TextureConfig cfg)
 
     // OpenGL assumes everything is aligned to 4 bytes for some reason, tell it to add padding if
     // not.
-    glPixelStorei(GL_UNPACK_ALIGNMENT, (this->w % 4 != 0));
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, cfg.gpu_format, this->w, this->h, 0, cfg.format, GL_UNSIGNED_BYTE, this->data);
+    GLenum format = GL_RGB;
+    if (ch == 3) format = GL_RGB;
+    else if (ch == 4) format = GL_RGBA;
+
+    glTexImage2D(GL_TEXTURE_2D, 0, format, this->w, this->h, 0, format, GL_UNSIGNED_BYTE, this->data);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, cfg.min_filter);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, cfg.mag_filter);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, cfg.wrap_s);

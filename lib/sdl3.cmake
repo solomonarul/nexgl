@@ -66,9 +66,18 @@ if(SDL3_MIXER_VENDORED)
 else()
     message(STATUS "SDL3_mixer: Using local version in ${PROJECT_NAME}.")
     find_package(SDL3_mixer REQUIRED)
-    target_link_libraries(
-        ${PROJECT_NAME}
-        PUBLIC
-            SDL3_mixer
-    )
+
+    if(NEX_BUILD_PLATFORM MATCHES "WINDOWS")
+        target_link_libraries(
+            ${PROJECT_NAME}
+            PUBLIC
+                SDL3_mixer::SDL3_mixer
+        )
+    else()
+        target_link_libraries(
+            ${PROJECT_NAME}
+            PUBLIC
+                SDL3_mixer
+        )
+    endif()
 endif()

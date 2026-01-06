@@ -33,6 +33,8 @@ void AssetManager::remove_all()
     assets.clear();
 }
 
+#include <iostream>
+
 bool AssetManager::process_enqueued()
 {
     std::lock_guard<std::recursive_mutex> lock(mutex());
@@ -45,6 +47,7 @@ bool AssetManager::process_enqueued()
     q.erase(q.begin());
 
     storage()[task.key] = task.loader();
+    std::cout << "[TRCE] Loaded asset with ID " << task.key << "\n";
     return true;
 }
 
@@ -70,15 +73,6 @@ static GLint parse_wrap(const std::string& v)
     if (v == "clamp")
         return GL_CLAMP_TO_EDGE;
     return GL_CLAMP_TO_EDGE;
-}
-
-static GLint parse_format(const std::string& v)
-{
-    if (v == "rgb")
-        return GL_RGB;
-    if (v == "rgba")
-        return GL_RGBA;
-    return GL_RGB;
 }
 
 size_t AssetManager::queue_from_toml(const std::string& path)
@@ -175,12 +169,6 @@ size_t AssetManager::queue_from_toml(const std::string& path)
             if (auto v = t->get_as<std::string>("wrap_t"))
                 cfg.wrap_t = parse_wrap(std::string(*v));
 
-            if (auto v = t->get_as<std::string>("gpu_format"))
-                cfg.gpu_format = parse_format(std::string(*v));
-
-            if (auto v = t->get_as<std::string>("format"))
-                cfg.format = parse_format(std::string(*v));
-
             queue<Texture>(std::string(*id), std::move(cfg));
             count++;
         }
@@ -225,12 +213,6 @@ size_t AssetManager::queue_from_toml(const std::string& path)
 
                 if (auto v = tex->get_as<std::string>("wrap_t"))
                     cfg.wrap_t = parse_wrap(std::string(*v));
-
-                if (auto v = tex->get_as<std::string>("gpu_format"))
-                    cfg.gpu_format = parse_format(std::string(*v));
-
-                if (auto v = tex->get_as<std::string>("format"))
-                    cfg.format = parse_format(std::string(*v));
 
                 configs.push_back(std::move(cfg));
             }

@@ -15,8 +15,6 @@ namespace NEX::GL
         GLint mag_filter = GL_NEAREST;
         GLint wrap_s = GL_CLAMP_TO_EDGE;
         GLint wrap_t = GL_CLAMP_TO_EDGE;
-        GLint gpu_format = GL_RGB;
-        GLint format = GL_RGB;
     };
 
     struct Texture : public Core::IAsset

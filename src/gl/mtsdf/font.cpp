@@ -22,8 +22,6 @@ MTSDF::Font::Font(const std::string& path, const std::string& csv_path)
         .path = path,
         .min_filter = GL_LINEAR,
         .mag_filter = GL_LINEAR,
-        .gpu_format = GL_RGBA,
-        .format = GL_RGBA,
     });
 
     std::ifstream file(csv_path);
