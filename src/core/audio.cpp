@@ -2,12 +2,6 @@
 
 #include <cstdlib>
 
-#ifdef ASSET_LOAD_LOG
-#include "core/defines.hpp"
-
-#include <iostream>
-#endif
-
 using namespace NEX::Core;
 
 Audio::Audio(const std::string& path, bool predecode)
@@ -17,10 +11,6 @@ Audio::Audio(const std::string& path, bool predecode)
     this->track = MIX_CreateTrack(mixer);
     MIX_SetTrackAudio(this->track, this->audio);
     this->path = path;
-
-#ifdef ASSET_LOAD_LOG
-    std::cout << TTY_BLUE << "[INFO] Loaded sound (path: " << path << ")\n" << TTY_RESET;
-#endif
 }
 
 Audio::~Audio()
@@ -33,10 +23,6 @@ Audio::~Audio()
     }
     if (this->audio)
         MIX_DestroyAudio(this->audio), this->audio = nullptr;
-
-#ifdef ASSET_LOAD_LOG
-    std::cout << TTY_BLUE << "[INFO] Destroyed sound (path: " << this->path << ")\n" << TTY_RESET;
-#endif
 }
 
 void Audio::play_audio(void)

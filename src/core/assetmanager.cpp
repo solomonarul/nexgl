@@ -7,8 +7,6 @@
 #ifdef NEX_ASSET_LOADER_TOML
 #define TOML_IMPLEMENTATION
 #include <toml++/toml.hpp>
-
-#include <iostream>
 #endif
 
 using namespace NEX::Core;
@@ -33,8 +31,6 @@ void AssetManager::remove_all()
     assets.clear();
 }
 
-#include <iostream>
-
 bool AssetManager::process_enqueued()
 {
     std::lock_guard<std::recursive_mutex> lock(mutex());
@@ -47,7 +43,7 @@ bool AssetManager::process_enqueued()
     q.erase(q.begin());
 
     storage()[task.key] = task.loader();
-    std::cout << "[TRCE] Loaded asset with ID " << task.key << "\n";
+    SDL_Log("[TRCE] Loaded asset with ID %s\n", task.key.c_str());
     return true;
 }
 
@@ -80,7 +76,7 @@ size_t AssetManager::queue_from_toml(const std::string& path)
     const toml::parse_result result = toml::parse_file(path);
     if (!result)
     {
-        std::cerr << TTY_RED << "[EROR] Could not parse toml at path " << path << ": (" << result.error() << ")\n" << TTY_RESET;
+        SDL_Log("%s[EROR] Could not parse toml at path %s: (%s).\n", TTY_RED, path, result.error(), TTY_RESET);
         return 0;
     }
 

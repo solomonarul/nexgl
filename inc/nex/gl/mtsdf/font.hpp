@@ -22,11 +22,9 @@ namespace NEX::GL::MTSDF
     {
         std::unique_ptr<Texture> texture;
         std::map<char, GlyphData> glyphs;
-        std::string path;
 
         static std::unique_ptr<GL::Shader> default_shader;
 
         Font(const std::string&, const std::string&);
-        ~Font();
     };
 } // namespace NEX::GL::MTSDF

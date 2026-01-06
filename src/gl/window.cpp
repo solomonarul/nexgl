@@ -4,7 +4,6 @@
 
 #include <cstddef>
 #include <cstdlib>
-#include <iostream>
 
 using namespace NEX::GL;
 
@@ -73,10 +72,8 @@ Window::Window(WindowConfig cfg)
 
     window_count++;
 
-    std::cout << TTY_BLUE << "[INFO] Created SDL window (title: " << cfg.title << ") (w: " << cfg.w << ") (h: " << cfg.h << ")\n"
-              << TTY_RESET;
-
-    std::cout << TTY_BLUE << "[INFO] GLES 2.0 context data:\n" << TTY_RESET;
+    SDL_Log("%s[INFO] Created SDL window (title: %s) (w: %d) (h: %d)", TTY_BLUE, cfg.title.c_str(), cfg.w, cfg.h);
+    SDL_Log("[INFO] GLES 2.0 context data:%s\n", TTY_RESET);
     SDL_Log("Vendor   : %s", glGetString(GL_VENDOR));
     SDL_Log("Renderer : %s", glGetString(GL_RENDERER));
     SDL_Log("Version  : %s", glGetString(GL_VERSION));
@@ -91,6 +88,17 @@ void Window::use()
 void Window::vsync(bool enable)
 {
     SDL_GL_SetSwapInterval(enable ? 1 : 0);
+}
+
+void Window::set_fullscreen(bool status)
+{
+#if defined(__psp2__)
+    return;
+#else
+    SDL_SetWindowFullscreen(this->sdl, status);
+    this->fullscreen = status;
+    SDL_Log("%s[INFO] Window fullscreen mode set to %d.%s\n", TTY_BLUE, status, TTY_RESET);
+#endif
 }
 
 void Window::swap()

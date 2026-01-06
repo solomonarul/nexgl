@@ -1,7 +1,5 @@
 #include "gl/assets/texture.hpp"
 
-#include <iostream>
-
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
@@ -20,7 +18,7 @@ Texture::Texture(TextureConfig cfg)
     this->data = stbi_load(cfg.path.c_str(), &this->w, &this->h, &ch, 0);
     if (!this->data)
     {
-        std::cerr << TTY_RED << "[EROR] Could not load texture (path: " << cfg.path << "): " << stbi_failure_reason() << "\n" << TTY_RESET;
+        SDL_Log("%s[EROR] Could not load texture (path: %s): %s%s\n", TTY_RED, cfg.path.c_str(), stbi_failure_reason(), TTY_RESET);
         return;
     }
 
@@ -40,12 +38,6 @@ Texture::Texture(TextureConfig cfg)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, cfg.mag_filter);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, cfg.wrap_s);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, cfg.wrap_t);
-
-#ifdef ASSET_LOAD_LOG
-    std::cout << TTY_BLUE << "[INFO] Loaded texture (id: " << this->id << ") (path: " << cfg.path << ") (w: " << this->w << ") (h: " << this->h
-              << ") (ch: " << ch << ")\n"
-              << TTY_RESET;
-#endif
 
     stbi_image_free(this->data);
     this->data = nullptr;
@@ -70,9 +62,5 @@ Texture::~Texture()
             stbi_image_free(this->data);
 
         glDeleteTextures(1, &this->id);
-
-#ifdef ASSET_LOAD_LOG
-        std::cout << TTY_BLUE << "[INFO] Destroyed texture (id: " << this->id << ")\n" << TTY_RESET;
-#endif
     }
 }

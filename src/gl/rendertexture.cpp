@@ -2,8 +2,6 @@
 
 #include "core/defines.hpp"
 
-#include <iostream>
-
 using namespace NEX::GL;
 
 RenderTexture::RenderTexture(int w, int h)
@@ -28,7 +26,7 @@ RenderTexture::RenderTexture(int w, int h)
     GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     if (status != GL_FRAMEBUFFER_COMPLETE)
     {
-        std::cout << TTY_RED << "[EROR] Failed to create framebuffer object!\n" << TTY_RESET;
+        SDL_Log("%s[EROR] Failed to create framebuffer object!%s\n", TTY_RED, TTY_RESET);
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         glDeleteFramebuffers(1, &this->fbo), this->fbo = 0;
         glDeleteTextures(1, &this->id), this->id = 0;
