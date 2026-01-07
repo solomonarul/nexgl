@@ -12,6 +12,8 @@ namespace NEX::Core
 
             SDL_FPoint get_coords(void);
             SDL_FPoint get_coords_normalized(void);
+            bool is_in_rect(SDL_FRect);
+            bool is_in_normalized_rect(SDL_FRect);
         };
 
         SDL_Rect r_letterbox = {0, 0, 0, 0};

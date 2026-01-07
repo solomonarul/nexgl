@@ -48,6 +48,18 @@ InputManager::MouseData InputManager::get_mouse_data()
     return InputManager::self().m_data;
 }
 
+bool InputManager::MouseData::is_in_rect(SDL_FRect rect)
+{
+    SDL_FPoint coords = InputManager::self().m_data.get_coords();
+    return SDL_PointInRectFloat(&coords, &rect);
+}
+
+bool InputManager::MouseData::is_in_normalized_rect(SDL_FRect rect)
+{
+    SDL_FPoint coords = InputManager::self().m_data.get_coords_normalized();
+    return SDL_PointInRectFloat(&coords, &rect);
+}
+
 InputManager& InputManager::self()
 {
     static InputManager self;

@@ -8,7 +8,7 @@ namespace NEX::GL
     struct WindowConfig
     {
         std::string title;
-        size_t w, h;
+        int w, h;
     };
 
     struct Window

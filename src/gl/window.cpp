@@ -72,7 +72,7 @@ Window::Window(WindowConfig cfg)
 
     window_count++;
 
-    SDL_Log("%s[INFO] Created SDL window (title: %s) (w: %ld) (h: %ld)", TTY_BLUE, cfg.title.c_str(), cfg.w, cfg.h);
+    SDL_Log("%s[INFO] Created SDL window (title: %s) (w: %d) (h: %d)", TTY_BLUE, cfg.title.c_str(), cfg.w, cfg.h);
     SDL_Log("[INFO] GLES 2.0 context data:%s\n", TTY_RESET);
     SDL_Log("Vendor   : %s", glGetString(GL_VENDOR));
     SDL_Log("Renderer : %s", glGetString(GL_RENDERER));
@@ -93,11 +93,12 @@ void Window::vsync(bool enable)
 void Window::set_fullscreen(bool status)
 {
 #if defined(__psp2__)
+    UNUSED(status);
     return;
 #else
     SDL_SetWindowFullscreen(this->sdl, status);
     this->fullscreen = status;
-    SDL_Log("%s[INFO] Window fullscreen mode set to %d.%s\n", TTY_BLUE, status, TTY_RESET);
+    SDL_Log("%s[INFO] Window Fullscreen Mode set to %d.%s\n", TTY_BLUE, status, TTY_RESET);
 #endif
 }
 

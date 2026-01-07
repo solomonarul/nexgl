@@ -30,8 +30,10 @@ Texture::Texture(TextureConfig cfg)
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
     GLenum format = GL_RGB;
-    if (ch == 3) format = GL_RGB;
-    else if (ch == 4) format = GL_RGBA;
+    if (ch == 3)
+        format = GL_RGB;
+    else if (ch == 4)
+        format = GL_RGBA;
 
     glTexImage2D(GL_TEXTURE_2D, 0, format, this->w, this->h, 0, format, GL_UNSIGNED_BYTE, this->data);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, cfg.min_filter);
