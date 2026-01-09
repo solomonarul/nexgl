@@ -16,6 +16,7 @@ if(SDL3_VENDORED)
         SDL3
         GIT_REPOSITORY https://github.com/libsdl-org/SDL.git
         GIT_TAG release-3.4.x
+        GIT_SHALLOW TRUE
     )
     FetchContent_MakeAvailable(SDL3)
 
@@ -55,6 +56,7 @@ if(SDL3_MIXER_VENDORED)
         SDL3_mixer
         GIT_REPOSITORY https://github.com/libsdl-org/SDL_mixer
         GIT_TAG main
+        GIT_SHALLOW TRUE
     )
     FetchContent_MakeAvailable(SDL3_mixer)
 

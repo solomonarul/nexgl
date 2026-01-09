@@ -8,6 +8,7 @@ if(NEX_ASSET_LOADER_TOML)
 			tomlplusplus
 			GIT_REPOSITORY https://github.com/marzer/tomlplusplus.git
 			GIT_TAG master
+			GIT_SHALLOW TRUE
 		)
 		FetchContent_MakeAvailable(tomlplusplus)
 		target_link_libraries(
