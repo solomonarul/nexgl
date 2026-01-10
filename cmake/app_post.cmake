@@ -6,7 +6,10 @@ if(NEX_BUILD_PLATFORM MATCHES "VITA")
 	    VERSION ${VITA_VERSION}
 	    NAME ${VITA_APP_NAME}
 	    FILE platform/vita/sce_sys sce_sys
-	    FILE platform/vita/module module
+	    FILE $ENV{VITASDK}/arm-vita-eabi/modules/libGLESv2.suprx module/libGLESv2.suprx
+		FILE $ENV{VITASDK}/arm-vita-eabi/modules/libgpu_es4_ext.suprx module/libgpu_es4_ext.suprx
+		FILE $ENV{VITASDK}/arm-vita-eabi/modules/libIMGEGL.suprx module/libIMGEGL.suprx
+		FILE $ENV{VITASDK}/arm-vita-eabi/modules/libpvrPSP2_WSEGL.suprx module/libpvrPSP2_WSEGL.suprx
 	    FILE assets assets
 	)
 elseif(NEX_BUILD_PLATFORM MATCHES "WEB")

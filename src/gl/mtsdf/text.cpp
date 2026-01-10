@@ -94,7 +94,7 @@ SDL_FRect MTSDF::Text::get_bounding_box(void)
 void MTSDF::Text::draw(std::unique_ptr<Shader>& shader)
 {
     shader->use();
-    shader->setUniform("u_texture", 0);
+    shader->set_uniform("u_texture", 0);
     glUniform4f(glGetUniformLocation(shader->id, "u_color"), this->color.r / 255.0, this->color.g / 255.0, this->color.b / 255.0,
                 this->color.a / 255.0);
 

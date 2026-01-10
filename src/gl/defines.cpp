@@ -15,6 +15,12 @@ float NEX::GL::FULLSCREEN_RECT2D[] = {
 };
 // clang-format on
 
+void NEX::GL::clear_color(SDL_FColor color)
+{
+    glClearColor(color.r, color.g, color.b, color.a);
+    glClear(GL_COLOR_BUFFER_BIT);
+}
+
 void NEX::GL::set_view(SDL_Rect rect)
 {
     glViewport(rect.x, rect.y, rect.w, rect.h);

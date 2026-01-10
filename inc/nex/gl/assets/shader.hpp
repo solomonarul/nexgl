@@ -33,12 +33,9 @@ namespace NEX::GL
         Shader(std::string, std::string);
         Shader(const VertexShader&, const FragmentShader&);
 
-        void setUniform(std::string const name, int value);
-        void setUniform(std::string const name, float value);
-        void setUniform(std::string const name, double value)
-        {
-            setUniform(name, (float)value);
-        }
+        void set_uniform(std::string const name, int value);
+        void set_uniform(std::string const name, float value);
+        void set_uniform(std::string const name, double value);
         ~Shader();
     };
 }; // namespace NEX::GL

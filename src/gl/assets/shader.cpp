@@ -126,14 +126,19 @@ void Shader::use()
     glUseProgram(this->id);
 }
 
-void Shader::setUniform(std::string const name, int value)
+void Shader::set_uniform(std::string const name, int value)
 {
     glUniform1i(glGetUniformLocation(this->id, name.c_str()), value);
 }
 
-void Shader::setUniform(std::string const name, float value)
+void Shader::set_uniform(std::string const name, float value)
 {
     glUniform1f(glGetUniformLocation(this->id, name.c_str()), value);
+}
+
+void Shader::set_uniform(std::string const name, double value)
+{
+    set_uniform(name, (float)value);
 }
 
 Shader::~Shader()
