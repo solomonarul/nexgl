@@ -1,0 +1,3 @@
+[submodule "lib/glad_gles2"]
+	path = lib/glad_gles2
+	url = https://github.com/solomonarul/glad_gles2.git

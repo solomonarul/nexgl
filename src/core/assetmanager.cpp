@@ -43,7 +43,9 @@ bool AssetManager::process_enqueued()
     q.erase(q.begin());
 
     storage()[task.key] = task.loader();
+#ifdef __DEBUG__
     SDL_Log("[TRCE] Loaded asset with ID %s\n", task.key.c_str());
+#endif
     return true;
 }
 

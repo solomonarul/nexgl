@@ -1,5 +1,6 @@
 #pragma once
 
+#include <any>
 #include <memory>
 #include <vector>
 
@@ -27,6 +28,8 @@ namespace NEX::Core
         void send(SDL_Event&);
 
         std::vector<std::shared_ptr<IState>> states;
+
+        std::any userdata;
     };
 }; // namespace NEX::Core
 

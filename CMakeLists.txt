@@ -65,6 +65,20 @@ target_compile_options(${PROJECT_NAME} PRIVATE
     $<$<CXX_COMPILER_ID:Clang>:-Wall -Wextra -Werror -fno-exceptions>
 )
 
+if(CMAKE_BUILD_TYPE MATCHES "Debug")
+    target_compile_definitions(
+        ${PROJECT_NAME}
+        PUBLIC
+            __DEBUG__   
+    )
+else()
+    target_compile_definitions(
+        ${PROJECT_NAME}
+        PUBLIC
+            __RELEASE__   
+    )
+endif()
+
 if(NEX_BUILD_PLATFORM MATCHES "VITA")
     include("cmake/vita_post.cmake")
 else()
